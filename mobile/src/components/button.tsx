@@ -15,10 +15,11 @@ export default function Button( { children } : ButtonProps) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 52,
+    height: 48,
+    paddingHorizontal: 16,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
-    backgroundColor: '#a370f7',
+    backgroundColor: '#f2f2f2',
   },
 });
