@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { RestaurantRepository } from '../../domain/repositories/restaurant.repository';
 import { Restaurant } from '../../domain/models/restaurant.model';
+import { RestaurantRepository } from 'src/infrastructure/database/repositories/restaurant.repository';
 
 @Injectable()
 export class RestaurantService {
