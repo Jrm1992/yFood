@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { MenuItemRepository } from '../../domain/repositories/menu-item.repository';
 import { MenuItem } from '../../domain/models/menu-item.model';
+import { MenuItemRepository } from 'src/infrastructure/database/repositories/menu-item.repository';
 
 @Injectable()
 export class MenuItemService {
