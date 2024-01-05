@@ -15,7 +15,11 @@ export class RestaurantService {
   }
 
   async updateRestaurant(restaurant: Restaurant): Promise<Restaurant> {
-    return this.restaurantRepository.updateRestaurant(restaurant);
+    if (!restaurant.id) {
+      throw new Error('Cannot update restaurant without an ID.');
+    }
+
+    return this.restaurantRepository.updateRestaurant({ where: { id: restaurant.id }, data: restaurant });
   }
 
 }
