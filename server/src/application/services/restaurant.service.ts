@@ -14,4 +14,8 @@ export class RestaurantService {
     return this.restaurantRepository.createRestaurant(restaurant);
   }
 
+  async updateRestaurant(restaurant: Restaurant): Promise<Restaurant> {
+    return this.restaurantRepository.updateRestaurant(restaurant);
+  }
+
 }
