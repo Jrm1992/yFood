@@ -7,11 +7,19 @@ export class RestaurantService {
   constructor(private readonly restaurantRepository: RestaurantRepository) {}
 
   async getRestaurantByID(restaurantID: string): Promise<Restaurant | null> {
-    return this.restaurantRepository.getRestaurantByID(restaurantID);
+    try {
+      return this.restaurantRepository.getRestaurantByID(restaurantID);
+    } catch (error) {
+      throw new Error("Error getting restaurant: " + error);
+    }
   }
 
   async createRestaurant(restaurant: Restaurant): Promise<Restaurant> {
-    return this.restaurantRepository.createRestaurant(restaurant);
+    try{
+      return this.restaurantRepository.createRestaurant(restaurant);
+    }catch(error) {
+      throw new Error("Error creating restaurant: " + error);
+    }
   }
 
   async updateRestaurant(restaurant: Restaurant): Promise<Restaurant> {
