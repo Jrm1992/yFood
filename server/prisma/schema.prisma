@@ -15,11 +15,12 @@ datasource db {
 }
 
 model Restaurant {
-  id          String @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
   address     String
   phone       String
   description String
+  category    Category @default(BURGER)
 
   menuItems MenuItem[]
   orders    Order[]
@@ -37,11 +38,11 @@ model MenuItem {
 }
 
 model Order {
-  id           String     @id @default(uuid())
-  status       String     @default("Pending")
+  id           String      @id @default(uuid())
+  status       OrderStatus @default(PENDING)
   total        Float
   orderDate    DateTime
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurant   Restaurant  @relation(fields: [restaurantId], references: [id])
   restaurantId String
 
   orderItems OrderItem[]
@@ -54,4 +55,16 @@ model OrderItem {
   orderId    String
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
   menuItemId String
+}
+
+enum Category {
+  BURGER
+  PIZZA
+  SALAD
+  DRINKS
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
 }
