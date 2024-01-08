@@ -6,6 +6,7 @@ export const RestaurantDtoSchema = z.object({
   address: z.string().max(255),
   phone: z.string().max(20),
   description: z.string(),
+  category: z.enum(['BURGER', 'PIZZA', 'SALAD', 'DRINKS']),
 });
 
 export type RestaurantDto = z.infer<typeof RestaurantDtoSchema>;
