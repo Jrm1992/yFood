@@ -6,6 +6,10 @@ import { Restaurant } from 'src/domain/models/restaurant.model';
 @Injectable()
 export class RestaurantRepository implements IRestaurantRepository {
   constructor(private readonly prismaService: PrismaService) {}
+
+  getRestaurants(): Promise<Restaurant[]> {
+    return this.prismaService.restaurant.findMany()
+  }
   
   getRestaurantByID(restaurantID: string): Promise<Restaurant> {
     return this.prismaService.restaurant.findUnique({

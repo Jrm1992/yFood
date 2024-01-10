@@ -8,6 +8,11 @@ import { randomUUID } from 'crypto';
 export class RestaurantController {
   constructor(private readonly restaurantService: RestaurantService) {}
 
+  @Get()
+  async getAllRestaurants(): Promise<Restaurant[]> {
+    return this.restaurantService.getRestaurants();
+  }
+
   @Get(':id')
   async getRestaurant(@Param('id') id: string): Promise<Restaurant | null> {
     return this.restaurantService.getRestaurantByID(id);
@@ -23,7 +28,8 @@ export class RestaurantController {
         validatedDto.name,
         validatedDto.address,
         validatedDto.phone,
-        validatedDto.description
+        validatedDto.description,
+        validatedDto.category
       );
 
       return this.restaurantService.createRestaurant(restaurant);
@@ -42,7 +48,8 @@ export class RestaurantController {
         validatedDto.name,
         validatedDto.address,
         validatedDto.phone,
-        validatedDto.description
+        validatedDto.description,
+        validatedDto.category
       );
 
       return this.restaurantService.updateRestaurant(restaurant);

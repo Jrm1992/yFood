@@ -1,6 +1,3 @@
-import { MenuItem } from "./menu-item.model";
-import { Order } from "./order.model";
-
 export class Restaurant {
   constructor(
     public id: string, 
@@ -8,8 +5,13 @@ export class Restaurant {
     public address: string, 
     public phone: string, 
     public description: string,
-    public category: string,
-    public menuItems: MenuItem[],
-    public orders: Order[]
+    public category: Category,
     ) {}
+}
+
+enum Category {
+  BURGER = 'BURGER',
+  PIZZA = 'PIZZA',
+  SALAD = 'SALAD',
+  DRINKS = 'DRINKS',
 }

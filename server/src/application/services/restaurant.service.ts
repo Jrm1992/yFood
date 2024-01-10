@@ -6,6 +6,14 @@ import { RestaurantRepository } from 'src/infrastructure/database/repositories/r
 export class RestaurantService {
   constructor(private readonly restaurantRepository: RestaurantRepository) {}
 
+  async getRestaurants(): Promise<Restaurant[]> {
+    try {
+      return this.restaurantRepository.getRestaurants();
+    } catch (error) {
+      throw new Error("Error getting restaurants: " + error);
+    }
+  }
+
   async getRestaurantByID(restaurantID: string): Promise<Restaurant | null> {
     try {
       return this.restaurantRepository.getRestaurantByID(restaurantID);
