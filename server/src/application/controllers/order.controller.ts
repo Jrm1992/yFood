@@ -12,6 +12,13 @@ export class OrderController {
     return this.orderService.getOrderByID(id);
   }
 
+  @Get(':restaurantId')
+  async getOrdersByRestaurantID(
+    @Param('restaurantId') restaurantId: string,
+  ): Promise<Order[]> {
+    return this.orderService.getOrdersByRestaurantID(restaurantId);
+  }
+
   @Post()
   async createOrder(
     @Body() createOrderDtoSchema: CreateOrderDto,
