@@ -10,6 +10,10 @@ export class OrderService {
     return this.orderRepository.getOrderByID(orderID);
   }
 
+  async getOrdersByRestaurantID(restaurantID: string): Promise<Order[]> {
+    return this.orderRepository.getOrdersByRestaurantID(restaurantID);
+  }
+
   async createOrder(restaurantId: string, orderItems: any): Promise<Order> {
     return this.orderRepository.createOrder(restaurantId, orderItems);
   }
