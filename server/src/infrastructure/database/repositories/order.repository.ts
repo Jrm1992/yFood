@@ -12,6 +12,15 @@ export class OrderRepository implements IOrderRepository {
       },
     });
   }
+
+  getOrdersByRestaurantID(restaurantID: string): Promise<Order[]> {
+    return this.prismaService.order.findMany({
+      where: {
+        restaurantId: restaurantID,
+      },
+    });
+  }
+  
   createOrder(restaurantId: string, orderItems: any): Promise<Order> {
     return this.prismaService.order.create({
       data: {
