@@ -1,13 +1,13 @@
-import { RestaurantRepository as IRestaurantRepository } from './../../../domain/repositories/restaurant.repository';
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
 import { Restaurant } from 'src/domain/models/restaurant.model';
+import { PrismaService } from '../prisma/prisma.service';
+import { RestaurantRepository as IRestaurantRepository } from './../../../domain/repositories/restaurant.repository';
 
 @Injectable()
 export class RestaurantRepository implements IRestaurantRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  getRestaurants(): Promise<Restaurant[]> {
+  async getRestaurants(): Promise<Restaurant[]> {
     return this.prismaService.restaurant.findMany()
   }
   

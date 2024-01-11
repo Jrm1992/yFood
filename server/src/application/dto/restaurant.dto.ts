@@ -1,3 +1,4 @@
+import { Category } from '@prisma/client';
 import z from 'zod';
 
 export const RestaurantDtoSchema = z.object({
@@ -6,7 +7,7 @@ export const RestaurantDtoSchema = z.object({
   address: z.string().max(255),
   phone: z.string().max(20),
   description: z.string(),
-  category: z.enum(['BURGER', 'PIZZA', 'SALAD', 'DRINKS']),
+  category: z.nativeEnum(Category),
 });
 
 export type RestaurantDto = z.infer<typeof RestaurantDtoSchema>;

@@ -1,3 +1,5 @@
+import { Category } from "@prisma/client";
+
 export class Restaurant {
   constructor(
     public id: string, 
@@ -7,11 +9,4 @@ export class Restaurant {
     public description: string,
     public category: Category,
     ) {}
-}
-
-enum Category {
-  BURGER = 'BURGER',
-  PIZZA = 'PIZZA',
-  SALAD = 'SALAD',
-  DRINKS = 'DRINKS',
 }
