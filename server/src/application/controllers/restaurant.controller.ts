@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, Put, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Put,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { RestaurantService } from '../services/restaurant.service';
 import { Restaurant } from '../../domain/models/restaurant.model';
 import { RestaurantDto, RestaurantDtoSchema } from '../dto/restaurant.dto';
@@ -19,7 +28,9 @@ export class RestaurantController {
   }
 
   @Post()
-  async createRestaurant(@Body() restaurantDto: RestaurantDto): Promise<Restaurant> {
+  async createRestaurant(
+    @Body() restaurantDto: RestaurantDto,
+  ): Promise<Restaurant> {
     try {
       const validatedDto = RestaurantDtoSchema.parse(restaurantDto);
 
@@ -29,17 +40,23 @@ export class RestaurantController {
         validatedDto.address,
         validatedDto.phone,
         validatedDto.description,
-        validatedDto.category
+        validatedDto.category,
       );
 
       return this.restaurantService.createRestaurant(restaurant);
     } catch (error) {
-      throw new HttpException({ message: 'Validation failed', errors: error.errors }, HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        { message: 'Validation failed', errors: error.errors },
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 
   @Put(':id')
-  async updateRestaurant(@Param('id') id: string, @Body() restaurantDto: RestaurantDto): Promise<Restaurant> {
+  async updateRestaurant(
+    @Param('id') id: string,
+    @Body() restaurantDto: RestaurantDto,
+  ): Promise<Restaurant> {
     try {
       const validatedDto = RestaurantDtoSchema.parse(restaurantDto);
 
@@ -49,12 +66,15 @@ export class RestaurantController {
         validatedDto.address,
         validatedDto.phone,
         validatedDto.description,
-        validatedDto.category
+        validatedDto.category,
       );
 
       return this.restaurantService.updateRestaurant(restaurant);
     } catch (error) {
-      throw new HttpException({ message: 'Validation failed', errors: error.errors }, HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        { message: 'Validation failed', errors: error.errors },
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 }

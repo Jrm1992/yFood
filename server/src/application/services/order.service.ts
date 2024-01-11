@@ -10,7 +10,6 @@ export class OrderService {
     return this.orderRepository.getOrderByID(orderID);
   }
 
-
   async createOrder(order: Order): Promise<Order> {
     return this.orderRepository.createOrder(order);
   }

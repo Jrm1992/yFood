@@ -10,7 +10,7 @@ export class RestaurantService {
     try {
       return this.restaurantRepository.getRestaurants();
     } catch (error) {
-      throw new Error("Error getting restaurants: " + error);
+      throw new Error('Error getting restaurants: ' + error);
     }
   }
 
@@ -18,15 +18,15 @@ export class RestaurantService {
     try {
       return this.restaurantRepository.getRestaurantByID(restaurantID);
     } catch (error) {
-      throw new Error("Error getting restaurant: " + error);
+      throw new Error('Error getting restaurant: ' + error);
     }
   }
 
   async createRestaurant(restaurant: Restaurant): Promise<Restaurant> {
-    try{
+    try {
       return this.restaurantRepository.createRestaurant(restaurant);
-    }catch(error) {
-      throw new Error("Error creating restaurant: " + error);
+    } catch (error) {
+      throw new Error('Error creating restaurant: ' + error);
     }
   }
 
@@ -35,7 +35,9 @@ export class RestaurantService {
       throw new Error('Cannot update restaurant without an ID.');
     }
 
-    return this.restaurantRepository.updateRestaurant({ where: { id: restaurant.id }, data: restaurant });
+    return this.restaurantRepository.updateRestaurant({
+      where: { id: restaurant.id },
+      data: restaurant,
+    });
   }
-
 }

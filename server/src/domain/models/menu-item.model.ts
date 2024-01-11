@@ -4,6 +4,6 @@ export class MenuItem {
     public restaurantId: string,
     public name: string,
     public description: string,
-    public price: number
+    public price: number,
   ) {}
 }

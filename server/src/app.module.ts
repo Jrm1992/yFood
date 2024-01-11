@@ -11,13 +11,8 @@ import { OrderRepository } from './infrastructure/database/repositories/order.re
 import { RestaurantRepository } from './infrastructure/database/repositories/restaurant.repository';
 
 @Module({
-  imports: [
-    PrismaModule,
-  ],
-  controllers: [
-    AppController,     
-    RestaurantController
-  ],
+  imports: [PrismaModule],
+  controllers: [AppController, RestaurantController],
   providers: [
     AppService,
     RestaurantService,
@@ -25,7 +20,7 @@ import { RestaurantRepository } from './infrastructure/database/repositories/res
     OrderService,
     RestaurantRepository,
     OrderRepository,
-    MenuItemRepository
+    MenuItemRepository,
   ],
 })
 export class AppModule {}
