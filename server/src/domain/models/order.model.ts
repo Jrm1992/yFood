@@ -7,6 +7,5 @@ export class Order {
     public orderDate: Date,
     public total: number,
     public status: OrderStatus,
-    public orderItems: OrderItem[],
   ) {}
 }
