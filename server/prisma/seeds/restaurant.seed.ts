@@ -42,6 +42,9 @@ const restaurantsData = [
 ];
 
 async function seedDatabase() {
+
+  await prisma.restaurant.deleteMany({});
+  
   for (const restaurantData of restaurantsData) {
     try {
       const validatedData = z.object({
