@@ -1,7 +1,9 @@
 import { MenuItemRepository as IMenuItemRepository } from 'src/domain/repositories/menu-item.repository';
 import { PrismaService } from '../prisma/prisma.service';
 import { MenuItem } from 'src/domain/models/menu-item.model';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class MenuItemRepository implements IMenuItemRepository {
   constructor(private readonly prismaService: PrismaService) {}
   getMenuItemByID(menuItemID: string): Promise<MenuItem> {

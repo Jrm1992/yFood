@@ -2,7 +2,9 @@ import { randomUUID } from 'crypto';
 import { Order } from 'src/domain/models/order.model';
 import { OrderRepository as IOrderRepository } from 'src/domain/repositories/order.repository';
 import { PrismaService } from '../prisma/prisma.service';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class OrderRepository implements IOrderRepository {
   constructor(private readonly prismaService: PrismaService) {}
   getOrderByID(orderID: string): Promise<Order> {

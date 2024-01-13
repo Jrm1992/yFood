@@ -7,14 +7,26 @@ export class OrderService {
   constructor(private readonly orderRepository: OrderRepository) {}
 
   async getOrderByID(orderID: string): Promise<Order | null> {
-    return this.orderRepository.getOrderByID(orderID);
+    try {
+      return await this.orderRepository.getOrderByID(orderID);
+    } catch (error) {
+      throw new Error('Error getting order: ' + error);
+    }
   }
 
   async getOrdersByRestaurantID(restaurantID: string): Promise<Order[]> {
-    return this.orderRepository.getOrdersByRestaurantID(restaurantID);
+    try {
+      return await this.orderRepository.getOrdersByRestaurantID(restaurantID);
+    } catch (error) {
+      throw new Error('Error getting orders: ' + error);
+    }
   }
 
   async createOrder(restaurantId: string, orderItems: any): Promise<Order> {
-    return this.orderRepository.createOrder(restaurantId, orderItems);
+    try {
+      return await this.orderRepository.createOrder(restaurantId, orderItems);
+    } catch (error) {
+      throw new Error('Error creating order: ' + error);
+    }
   }
 }
