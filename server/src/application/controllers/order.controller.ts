@@ -8,11 +8,11 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Get(':id')
-  async getOrder(@Param('id') id: string): Promise<Order | null> {
+  async getOrder(@Param('id') id: string): Promise<Order | null | any> {
     return this.orderService.getOrderByID(id);
   }
 
-  @Get(':restaurantId')
+  @Get('/restaurant/:restaurantId')
   async getOrdersByRestaurantID(
     @Param('restaurantId') restaurantId: string,
   ): Promise<Order[]> {
