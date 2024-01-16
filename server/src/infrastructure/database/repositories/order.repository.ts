@@ -7,7 +7,10 @@ import { OrderItemService } from 'src/application/services/order-item.service';
 
 @Injectable()
 export class OrderRepository implements IOrderRepository {
-  constructor(private readonly prismaService: PrismaService, private readonly OrderItemsService: OrderItemService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly OrderItemsService: OrderItemService,
+  ) {}
   getOrderByID(orderID: string): Promise<Order> {
     return this.prismaService.order.findUnique({
       where: {
@@ -21,26 +24,33 @@ export class OrderRepository implements IOrderRepository {
       where: {
         restaurantId: restaurantID,
       },
+      include: {
+        orderItems: true,
+      },
     });
   }
-  
+
   async createOrder(restaurantId: string, orderItems: any): Promise<Order> {
-    const order: Order =  await this.prismaService.order.create({
+    const order: Order = await this.prismaService.order.create({
       data: {
         id: randomUUID(),
         restaurantId,
         orderItems: {},
         orderDate: new Date(),
         status: 'PENDING',
-        total: 0
+        total: 0,
       },
     });
 
-    console.log(orderItems)
-
-    orderItems.map(async (orderItem: any) => {
-      await this.OrderItemsService.createOrderItem(orderItem.menuItemId, orderItem.quantity, order.id);
-    })
+    orderItems.map(
+      async (orderItem: { menuItemId: string; quantity: number }) => {
+        await this.OrderItemsService.createOrderItem(
+          orderItem.menuItemId,
+          orderItem.quantity,
+          order.id,
+        );
+      },
+    );
 
     return {
       ...order,

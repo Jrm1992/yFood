@@ -4,5 +4,6 @@ export class OrderItem {
     public orderId: string,
     public menuItemId: string,
     public quantity: number,
+    public total: number,
   ) {}
 }
