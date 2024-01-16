@@ -32,7 +32,7 @@ export class OrderRepository implements IOrderRepository {
         orderItems: null,
         orderDate: new Date(),
         status: 'PENDING',
-        total: 0,
+        total: 0
       },
     });
 
