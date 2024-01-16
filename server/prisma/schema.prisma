@@ -19,18 +19,18 @@ model Restaurant {
   category    Category @default(BURGER)
 
   menuItems MenuItem[]
-  orders    Order[]
 }
 
 model MenuItem {
-  id           String     @id @default(uuid())
+  id           String @id @default(uuid())
   name         String
   description  String
   price        Float
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   restaurantId String
 
   orderItems OrderItem[]
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
 }
 
 model Order {
@@ -38,18 +38,19 @@ model Order {
   status       OrderStatus @default(PENDING)
   total        Float
   orderDate    DateTime
-  restaurant   Restaurant  @relation(fields: [restaurantId], references: [id])
   restaurantId String
-  orderItems   OrderItem[]
+
+  orderItems OrderItem[]
 }
 
 model OrderItem {
-  id         String   @id @default(uuid())
+  id         String @id @default(uuid())
   quantity   Int
-  order      Order    @relation(fields: [orderId], references: [id])
   orderId    String
-  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
   menuItemId String
+
+  order    Order    @relation(fields: [orderId], references: [id])
+  menuItem MenuItem @relation(fields: [menuItemId], references: [id])
 }
 
 enum Category {
