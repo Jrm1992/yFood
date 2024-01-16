@@ -43,17 +43,19 @@ export class OrderRepository implements IOrderRepository {
     });
 
     orderItems.map(
-      async (orderItem: { menuItemId: string; quantity: number }) => {
+      async (orderItem: { menuItemId: string; quantity: number, total: number }) => {
         await this.OrderItemsService.createOrderItem(
           orderItem.menuItemId,
           orderItem.quantity,
           order.id,
+          orderItem.total
         );
       },
     );
 
     return {
       ...order,
+      total: orderItems.reduce((acc, item) => acc + item.total, 0),
     };
   }
 
