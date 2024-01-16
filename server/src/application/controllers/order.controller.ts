@@ -24,6 +24,6 @@ export class OrderController {
     @Body() createOrderDtoSchema: CreateOrderDto,
   ): Promise<Order> {
     const { restaurantId, orderItems } = createOrderDtoSchema;
-    return this.orderService.createOrder(restaurantId, orderItems);
+    return this.orderService.createOrder(restaurantId, orderItems as any);
   }
 }
