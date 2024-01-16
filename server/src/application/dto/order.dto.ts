@@ -7,6 +7,7 @@ export const CreateOrderDtoSchema = z.object({
     z.object({
       menuItemId: z.string(),
       quantity: z.number(),
+      total: z.number(),
     }),
   ),
 });
