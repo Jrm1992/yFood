@@ -29,14 +29,16 @@ export class OrderRepository implements IOrderRepository {
       data: {
         id: randomUUID(),
         restaurantId,
-        orderItems: null,
+        orderItems: {},
         orderDate: new Date(),
         status: 'PENDING',
         total: 0
       },
     });
 
-    orderItems.forEach(async (orderItem: any) => {
+    console.log(orderItems)
+
+    orderItems.map(async (orderItem: any) => {
       await this.OrderItemsService.createOrderItem(orderItem.menuItemId, orderItem.quantity, order.id);
     })
 
