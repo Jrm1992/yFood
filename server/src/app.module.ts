@@ -10,6 +10,8 @@ import { MenuItemRepository } from './infrastructure/database/repositories/menu-
 import { OrderRepository } from './infrastructure/database/repositories/order.repository';
 import { RestaurantRepository } from './infrastructure/database/repositories/restaurant.repository';
 import { OrderController } from './application/controllers/order.controller';
+import { OrderItemService } from './application/services/order-item.service';
+import { OrderItemRepository } from './infrastructure/database/repositories/order-item.repository';
 
 @Module({
   imports: [PrismaModule],
@@ -19,6 +21,8 @@ import { OrderController } from './application/controllers/order.controller';
     RestaurantService,
     MenuItemService,
     OrderService,
+    OrderItemService,
+    OrderItemRepository,
     RestaurantRepository,
     OrderRepository,
     MenuItemRepository,
