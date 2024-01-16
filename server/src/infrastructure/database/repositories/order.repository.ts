@@ -3,10 +3,11 @@ import { Order } from 'src/domain/models/order.model';
 import { OrderRepository as IOrderRepository } from 'src/domain/repositories/order.repository';
 import { PrismaService } from '../prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
+import { OrderItemService } from 'src/application/services/order-item.service';
 
 @Injectable()
 export class OrderRepository implements IOrderRepository {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService, private readonly OrderItemsService: OrderItemService) {}
   getOrderByID(orderID: string): Promise<Order> {
     return this.prismaService.order.findUnique({
       where: {
@@ -23,18 +24,27 @@ export class OrderRepository implements IOrderRepository {
     });
   }
   
-  createOrder(restaurantId: string, orderItems: any): Promise<Order> {
-    return this.prismaService.order.create({
+  async createOrder(restaurantId: string, orderItems: any): Promise<Order> {
+    const order: Order =  await this.prismaService.order.create({
       data: {
         id: randomUUID(),
         restaurantId,
-        orderItems,
+        orderItems: null,
         orderDate: new Date(),
         status: 'PENDING',
         total: 0,
       },
     });
+
+    orderItems.forEach(async (orderItem: any) => {
+      await this.OrderItemsService.createOrderItem(orderItem.menuItemId, orderItem.quantity, order.id);
+    })
+
+    return {
+      ...order,
+    };
   }
+
   updateOrder(order: Order): Promise<Order> {
     return this.prismaService.order.update({
       data: order,
