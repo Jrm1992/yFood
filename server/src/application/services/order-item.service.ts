@@ -8,7 +8,11 @@ export class OrderItemService {
   constructor(private readonly orderItemRepository: OrderItemRepository) {}
 
   async getOrderItemByID(orderItemID: string): Promise<OrderItem | null> {
-    return this.orderItemRepository.getOrderItemByID(orderItemID);
+    try {
+      return this.orderItemRepository.getOrderItemByID(orderItemID);
+    } catch (error) {
+      throw new Error('Error getting order item: ' + error);
+    }
   }
 
   async createOrderItem(
@@ -17,19 +21,31 @@ export class OrderItemService {
     orderID: string,
     total: number,
   ): Promise<OrderItem> {
-    return this.orderItemRepository.createOrderItem(
-      menuItemId,
-      quantity,
-      orderID,
-      total,
-    );
+    try {
+      return await this.orderItemRepository.createOrderItem(
+        menuItemId,
+        quantity,
+        orderID,
+        total,
+      );
+    } catch (error) {
+      throw new Error('Error creating order item: ' + error);
+    }
   }
 
   async updateOrderItem(orderItem: OrderItem): Promise<OrderItem> {
-    return this.orderItemRepository.updateOrderItem(orderItem);
+    try {
+      return await this.orderItemRepository.updateOrderItem(orderItem);
+    } catch (error) {
+      throw new Error('Error updating order item: ' + error);
+    }
   }
 
   async deleteOrderItem(orderItemID: string): Promise<void> {
-    return this.orderItemRepository.deleteOrderItem(orderItemID);
+    try {
+      await this.orderItemRepository.deleteOrderItem(orderItemID);
+    } catch (error) {
+      throw new Error('Error deleting order item: ' + error);
+    }
   }
 }
