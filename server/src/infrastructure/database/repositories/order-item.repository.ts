@@ -21,7 +21,7 @@ export class OrderItemRepository implements IOrderItemRepository {
         menuItemId,
         orderId: orderID,
         quantity,
-        total
+        total,
       },
     });
   }

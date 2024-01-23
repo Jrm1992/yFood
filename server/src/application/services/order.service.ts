@@ -22,7 +22,10 @@ export class OrderService {
     }
   }
 
-  async createOrder(restaurantId: string, orderItems: { menuItemId: string; quantity: number, total: number }): Promise<Order> {
+  async createOrder(
+    restaurantId: string,
+    orderItems: { menuItemId: string; quantity: number; total: number },
+  ): Promise<Order> {
     try {
       return await this.orderRepository.createOrder(restaurantId, orderItems);
     } catch (error) {

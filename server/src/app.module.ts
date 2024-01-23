@@ -16,7 +16,12 @@ import { MenuItemController } from './application/controllers/menu-item.controll
 
 @Module({
   imports: [PrismaModule],
-  controllers: [AppController, RestaurantController, OrderController, MenuItemController],
+  controllers: [
+    AppController,
+    RestaurantController,
+    OrderController,
+    MenuItemController,
+  ],
   providers: [
     AppService,
     RestaurantService,
