@@ -12,10 +12,11 @@ import { RestaurantRepository } from './infrastructure/database/repositories/res
 import { OrderController } from './application/controllers/order.controller';
 import { OrderItemService } from './application/services/order-item.service';
 import { OrderItemRepository } from './infrastructure/database/repositories/order-item.repository';
+import { MenuItemController } from './application/controllers/menu-item.controller';
 
 @Module({
   imports: [PrismaModule],
-  controllers: [AppController, RestaurantController, OrderController],
+  controllers: [AppController, RestaurantController, OrderController, MenuItemController],
   providers: [
     AppService,
     RestaurantService,
