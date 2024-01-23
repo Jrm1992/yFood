@@ -8,7 +8,9 @@ export class OrderItemRepository implements IOrderItemRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
   getOrderItemByID(orderItemID: string): Promise<OrderItem | null> {
-    throw new Error('Method not implemented.');
+    return this.prismaService.orderItem.findUnique({
+      where: { id: orderItemID },
+    });
   }
   createOrderItem(
     menuItemId: string,
@@ -27,9 +29,13 @@ export class OrderItemRepository implements IOrderItemRepository {
   }
 
   updateOrderItem(orderItem: OrderItem): Promise<OrderItem> {
-    throw new Error('Method not implemented.');
+    return this.prismaService.orderItem.update({
+      where: { id: orderItem.id },
+      data: orderItem,
+    });
   }
   deleteOrderItem(orderItemID: string): Promise<void> {
-    throw new Error('Method not implemented.');
+    this.prismaService.orderItem.delete({ where: { id: orderItemID } });
+    return Promise.resolve();
   }
 }
