@@ -35,9 +35,15 @@ export class RestaurantService {
       throw new Error('Cannot update restaurant without an ID.');
     }
 
-    return this.restaurantRepository.updateRestaurant({
-      where: { id: restaurant.id },
-      data: restaurant,
-    });
+    try {
+      return this.restaurantRepository.updateRestaurant({
+        where: { id: restaurant.id },
+        data: restaurant,
+      });
+    } catch (error) {
+      throw new Error('Error updating restaurant: ' + error);
+    }
+
+
   }
 }
