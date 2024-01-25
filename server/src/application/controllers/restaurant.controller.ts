@@ -8,10 +8,10 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { randomUUID } from 'crypto';
+import { RestaurantDto, RestaurantDtoSchema } from '../dto/restaurant.dto';
 import { RestaurantService } from '../services/restaurant.service';
 import { Restaurant } from '../../domain/models/restaurant.model';
-import { RestaurantDto, RestaurantDtoSchema } from '../dto/restaurant.dto';
-import { randomUUID } from 'crypto';
 
 @Controller('restaurants')
 export class RestaurantController {
