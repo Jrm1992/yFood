@@ -43,7 +43,5 @@ export class RestaurantService {
     } catch (error) {
       throw new Error('Error updating restaurant: ' + error);
     }
-
-
   }
 }
