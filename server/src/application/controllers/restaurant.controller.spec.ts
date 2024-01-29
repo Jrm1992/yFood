@@ -59,4 +59,21 @@ describe('RestaurantController', () => {
       expect(createRestaurantMock).toHaveBeenCalled();
     })
   })
+
+  describe('updateRestaurant', () => {
+    it('should call updateRestaurant', async () => {
+      const updateRestaurantMock = jest.fn();
+      restaurantService.updateRestaurant = updateRestaurantMock;
+
+      await restaurantController.updateRestaurant('1', {
+        name: 'Burger Palace',
+        address: '789 Main St, Cityville',
+        phone: '555-1234',
+        description: 'Delicious burger for everyone!',
+        category: 'BURGER',
+      })
+
+      expect(updateRestaurantMock).toHaveBeenCalled();
+    })
+  })
 });
