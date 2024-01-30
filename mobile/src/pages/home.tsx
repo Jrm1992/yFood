@@ -1,11 +1,55 @@
-import { View, Text, StyleSheet, TextInput, FlatList, Image } from 'react-native'
+import { View, Text, StyleSheet, TextInput, FlatList, Image, ScrollView } from 'react-native'
 import Button from '../components/button'
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import RestaurantCard from '../components/restaurant-card';
+
+const restaurantsData = [
+  {
+    name: 'Burger Palace',
+    address: '123 Main St, Cityville',
+    imageUrl: 'fdsklf',
+    phone: '555-1234',
+    description: 'Delicious burgers for everyone!',
+    category: 'BURGER',
+  },
+  {
+    name: 'Pizza Haven',
+    address: '456 Oak St, Townsville',
+    imageUrl: 'fdsklf',
+    phone: '555-5678',
+    description: 'Authentic pizzas made with love.',
+    category: 'PIZZA',
+  },
+  {
+    name: 'Fresh Greens',
+    address: '789 Elm St, Veggie City',
+    imageUrl: 'fdsklf',
+    phone: '555-9101',
+    description: 'Healthy salads to keep you fit!',
+    category: 'SALAD',
+  },
+  {
+    name: 'Thirst Quencher',
+    address: '101 Pine St, Drinksville',
+    imageUrl: 'fdsklf',
+    phone: '555-1122',
+    description: 'Wide range of refreshing drinks.',
+    category: 'DRINKS',
+  },
+  {
+    name: 'Flavors Delight',
+    address: '202 Maple St, Tasty Town',
+    imageUrl: 'fdsklf',
+    phone: '555-3344',
+    description: 'A mix of delicious flavors in every dish.',
+    category: 'BURGER',
+  },
+];
 
 export default function Home() {
   return (
-    <View style={styles.container}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
       <View style={styles.header}>
         <Button>
           <Ionicons name="filter-sharp" size={18} color="black" />
@@ -51,7 +95,12 @@ export default function Home() {
           ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
         />
       </View>
-    </View>
+      
+      <View style={styles.hero}>
+        <Text style={styles.heroTitle}>Popular</Text>
+        {restaurantsData.map((restaurant, index) => <RestaurantCard key={index} {...restaurant} />)}
+      </View>
+    </ScrollView>
   )
 }
 
@@ -64,4 +113,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  hero: {
+    marginTop: 32,
+    flexDirection: "column",
+  },
+  heroTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+    lineHeight: 36,
+    paddingVertical: 16,
+    
+  }
+  
 })
